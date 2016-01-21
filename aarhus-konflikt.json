@@ -1,0 +1,155 @@
+{
+  "map": {
+    "css": "aarhus-konflikt.css",
+    "srs": "EPSG:25832",
+    "maxZoomLevel": 0,
+    "minZoomLevel": 11,
+    "view": {
+      "zoomLevel": 6,
+      "x": 575159,
+      "y": 6223373
+    },
+    "layer":[
+      {
+        "namedlayer": "#gst"
+      },
+      {
+        "id": "grave",
+        "srs": "EPSG:4326",
+        "features": true,
+        "features_type": "Line",
+        "features_host": "https://mida.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT cartodb_id, status, to_date(startdato, 'YYYY-MM-DDTHH:MI:SS') as startdato, to_date(reel_slutdato, 'YYYY-MM-DDTHH:MI:SS') as slutdato, vejnavn, type, tilladelsesnr,sagsbeh_navn,the_geom FROM vm_tilladelser_1 WHERE type IN ('Grave') AND type IS NOT NULL AND status IN ('Godkendt') AND status IS NOT NULL AND the_geom IS NOT NULL AND to_date(slutdato,'YYYY-MM-DDTHH:MI:SS') > now()",
+        "features_dataType": "jsonp",
+        "features_style": {
+          "namedstyle": "#011",
+          "strokecolor_selected": "#11D",
+          "strokewidth_selected": 7
+        },
+        "template_info": "<div class='widget-hoverbox-title'>{{vejnavn}}</div><div class=\"widget-hoverbox-sub\"><div>Gravearbejde</div><div>Start: <% print(moment(startdato).format('DD/MM-YYYY'))%></div><div>Slut: <% print(moment(slutdato).format('DD/MM-YYYY'))%></div><div>Status: {{status}}</div><div>Sagsbehandler: {{sagsbeh_navn}}</div><div>Till.nr.: {{tilladelsesnr}}</div></div>",
+        "template_search_title": "{{vejnavn}}",
+        "template_search_description": "{{tilladelsesnr}} ",
+        "name": "Gravearbejder",
+        "type": "geojson",
+        "userfilter": {
+          "startdato": {
+            "type": "daterange",
+            "urlParamNames": {
+              "min": "startdato",
+              "max": "slutdato"
+            },
+            "label": "Hvornår (vælg fra og til)",
+            "maxDateColumn": "slutdato",
+            "format": "DD/MM-YYYY",
+            "showShortcuts": true, "shortcuts" : {"next": ["week","month","year"]}
+          }
+        }
+      },
+      {
+        "id": "materiel",
+        "srs": "EPSG:4326",
+        "features": true,
+        "features_type": "Line",
+        "features_host": "https://mida.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT cartodb_id, status, to_date(startdato, 'YYYY-MM-DDTHH:MI:SS') as startdato, to_date(reel_slutdato, 'YYYY-MM-DDTHH:MI:SS') as slutdato, vejnavn, type, tilladelsesnr,sagsbeh_navn,the_geom FROM vm_tilladelser_1 WHERE type IN ('Materiel') AND type IS NOT NULL AND status IN ('Godkendt') AND status IS NOT NULL AND the_geom IS NOT NULL AND to_date(slutdato,'YYYY-MM-DDTHH:MI:SS') > now()",
+        "features_dataType": "jsonp",
+        "features_style": {
+          "namedstyle": "#007",
+          "strokecolor_selected": "#11D",
+          "strokewidth_selected": 7
+        },
+        "template_info": "<div class='widget-hoverbox-title'>{{vejnavn}}</div><div class=\"widget-hoverbox-sub\"><div>Materielopstilling</div><div>Start: <% print(moment(startdato).format('DD/MM-YYYY'))%></div><div>Slut: <% print(moment(slutdato).format('DD/MM-YYYY'))%></div><div>Status: {{status}}</div><div>Sagsbehandler: {{sagsbeh_navn}}</div><div>Till.nr.: {{tilladelsesnr}}</div></div>",
+        "template_search_title": "{{vejnavn}}",
+        "template_search_description": "{{tilladelsesnr}} ",
+        "name": "Materiel",
+        "type": "geojson",
+        "userfilter": {
+          "startdato": {
+            "type": "daterange",
+            "urlParamNames": {
+              "min": "startdato",
+              "max": "slutdato"
+            },
+            "label": "Hvornår (vælg fra og til)",
+            "maxDateColumn": "slutdato",
+            "format": "DD/MM-YYYY",
+            "showShortcuts": true, "shortcuts" : {"next": ["week","month","year"]}
+          }
+        }
+      },
+      {
+        "id": "arrangementer",
+        "srs": "EPSG:4326",
+        "features": true,
+        "features_type": "Line",
+        "features_host": "https://mida.cartodb.com/api/v2/sql?format=GeoJSON&q=with arr_plads (arr_id, plads_id) as (SELECT cartodb_id as arr_id, regexp_split_to_table(pladser, E',') AS plads_id FROM arrangementer), arr_geometry (arr_id, geom_tot) as (select ap.arr_id, st_union(p.the_geom) as geom_tot from arr_plads ap join arrangementspladser p on (btrim(ap.plads_id) = p.name) group by ap.arr_id) select a.cartodb_id, a.category_title, a.subject, a.category_title, a.opstilling_starttidspunkt, a.oprydning_sluttidspunkt, a.agent_name, a.pladser, a.ref, a.arrangementets_starttidspunkt as startdato, a.arrangementets_sluttidspunkt as slutdato, g.geom_tot as the_geom from arrangementer a join arr_geometry g on (a.cartodb_id = g.arr_id)",
+        "features_dataType": "jsonp",
+        "features_style": {
+          "namedstyle": "#005",
+          "strokecolor_selected": "#11D",
+          "strokewidth_selected": 7,
+          "fillopacity_selected": 0
+        },
+        "template_info": "<div class='widget-hoverbox-title'>{{subject}}</div><div class=\"widget-hoverbox-sub\"><div>Arrangement</div><div>Kategori: {{category_title}}</div><div>Pladser: {{pladser}}</div> <div>Opstilling, starttidspunkt: <% print(moment(opstilling_starttidspunkt).format('DD/MM-YYYY H:mm'))%></div> <div>Oprydning, sluttidspunkt: <% print(moment(oprydning_sluttidspunkt).format('DD/MM-YYYY H:mm'))%></div> <div>Arrangementets starttidspunkt: <% print(moment(startdato).format('DD/MM-YYYY H:mm'))%></div><div>Arrangementets sluttidspunkt: <% print(moment(slutdato).format('DD/MM-YYYY H:mm'))%></div> <div>ref: {{ref}}</div> <div>Sagsbehandler: {{agent_name}}</div> </div>",
+        "template_search_title": "{{subject}}",
+        "template_search_description": "{{category_title}} ",
+        "name": "Arrangementer",
+        "type": "geojson",
+        "userfilter": {
+          "startdato": {
+            "type": "daterange",
+             "urlParamNames": {
+              "min": "startdato",
+              "max": "slutdato"
+            },
+            "label": "Hvornår (vælg fra og til)",
+            "maxDateColumn": "slutdato",
+            "format": "DD/MM-YYYY", "showShortcuts": true, "shortcuts" : {"next": ["week","month","year"]}
+          }
+        }
+      }
+    ],
+    "controls": [
+      {
+        "info": {
+          "disable": false,
+          "eventtype": "click",
+          "type": "popup",
+          "multifeature": 10
+        }
+      },
+      {
+        "layerswitch": {
+          "disable": false,
+          "layers": ["grave", "materiel", "arrangementer"],
+          "showbuttons": true,
+          "showlegend": true
+        }
+      },
+      {
+        "filter": {
+          "disable": false,
+          "combine": true
+        }
+      }, {
+"search": {
+          "displaytext": "Søg",
+          "minResolution": 1,
+          "driver": [
+            {
+              "type": "address",
+              "options": {
+                "area": "muncode0751"
+            	}
+            },
+            {
+              "type": "local",
+              "options": {
+                "singular": "Arrangement",
+                "plural": "Arrangementer"
+            	}
+            }
+          ]
+        }      
+      }
+    ]
+  }
+}

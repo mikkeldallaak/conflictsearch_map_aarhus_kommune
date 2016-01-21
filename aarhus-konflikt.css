@@ -1,0 +1,19 @@
+.widget-filter {
+    background-color: transparent;
+    border: 0;
+    width: 250px;
+    padding: 0;
+}
+.widget-filter label {
+    display: none;
+}
+html, body {
+    margin  : 0;
+    padding : 0;
+    height  : 100%;
+    width   : 100%;
+    overflow: hidden;
+}
+.widget-container, .widget-map {
+    height: 100%;
+}
