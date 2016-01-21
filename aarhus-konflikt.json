@@ -40,7 +40,7 @@
             "min": "today",
             "max": "today",
             "startDate": "today",
-            "label": "HvornÃ¥r (vÃ¦lg fra og til)",
+            "label": "Hvornår (vælg fra og til)",
             "maxDateColumn": "slutdato",
             "format": "DD/MM-YYYY",
             "showShortcuts": true, "shortcuts" : {"next": ["week","month","year"]}
@@ -74,7 +74,7 @@
             "min": "today",
             "max": "today",
             "startDate": "today",
-            "label": "HvornÃ¥r (vÃ¦lg fra og til)",
+            "label": "Hvornår (vælg fra og til)",
             "maxDateColumn": "slutdato",
             "format": "DD/MM-YYYY",
             "showShortcuts": true, "shortcuts" : {"next": ["week","month","year"]}
@@ -109,7 +109,7 @@
             "min": "today",
             "max": "today",
             "startDate": "today",
-            "label": "HvornÃ¥r (vÃ¦lg fra og til)",
+            "label": "Hvornår (vælg fra og til)",
             "maxDateColumn": "slutdato",
             "format": "DD/MM-YYYY", "showShortcuts": true, "shortcuts" : {"next": ["week","month","year"]}
           }
@@ -140,7 +140,7 @@
         }
       }, {
 "search": {
-          "displaytext": "SÃ¸g",
+          "displaytext": "Søg",
           "minResolution": 1,
           "driver": [
             {
