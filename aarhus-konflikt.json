@@ -37,7 +37,10 @@
               "min": "startdato",
               "max": "slutdato"
             },
-            "label": "Hvornår (vælg fra og til)",
+            "min": "today",
+            "max": "today",
+            "startDate": "today",
+            "label": "HvornÃ¥r (vÃ¦lg fra og til)",
             "maxDateColumn": "slutdato",
             "format": "DD/MM-YYYY",
             "showShortcuts": true, "shortcuts" : {"next": ["week","month","year"]}
@@ -68,7 +71,10 @@
               "min": "startdato",
               "max": "slutdato"
             },
-            "label": "Hvornår (vælg fra og til)",
+            "min": "today",
+            "max": "today",
+            "startDate": "today",
+            "label": "HvornÃ¥r (vÃ¦lg fra og til)",
             "maxDateColumn": "slutdato",
             "format": "DD/MM-YYYY",
             "showShortcuts": true, "shortcuts" : {"next": ["week","month","year"]}
@@ -96,11 +102,14 @@
         "userfilter": {
           "startdato": {
             "type": "daterange",
-             "urlParamNames": {
+            "urlParamNames": {
               "min": "startdato",
               "max": "slutdato"
             },
-            "label": "Hvornår (vælg fra og til)",
+            "min": "today",
+            "max": "today",
+            "startDate": "today",
+            "label": "HvornÃ¥r (vÃ¦lg fra og til)",
             "maxDateColumn": "slutdato",
             "format": "DD/MM-YYYY", "showShortcuts": true, "shortcuts" : {"next": ["week","month","year"]}
           }
@@ -131,7 +140,7 @@
         }
       }, {
 "search": {
-          "displaytext": "Søg",
+          "displaytext": "SÃ¸g",
           "minResolution": 1,
           "driver": [
             {
