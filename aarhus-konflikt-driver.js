@@ -12,7 +12,7 @@
         };
         checkReady(function() {
             
-		var scriptlocation = 'http://widget.cdn.septima.dk/1.12.3/';
+		var scriptlocation = 'http://widget.cdn.septima.dk/1.13.1/';
 
             var lib = decodeURIComponent((new RegExp('[?|&]widget-debug=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||'widget_.js';
 
