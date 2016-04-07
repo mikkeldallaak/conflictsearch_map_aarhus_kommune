@@ -117,21 +117,6 @@
       }
     ],
     "controls": [
-       {
-        "googlestreetview": {
-          "disable": false,
-          "APIKey": "AIzaSyCdn16Emanau-rc16YNiIUq0JsySsSYrZs",
-          "heading": 330,
-          "pitch": 20,
-          "radius": 50,
-          "features_style": {
-            "namedstyle": "#004"
-          },
-          "detachXss": "xyz"
-        },
-        "fullextent": {
-          "disable": false
-        }
       {
         "info": {
           "disable": false,
